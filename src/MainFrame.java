@@ -131,8 +131,8 @@ public class MainFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (!textField.getText().equals("")) {
                     double num = Double.parseDouble(textField.getText());
-                    textField.setText(Math.pow(num,2) + "");
-                    lastOperation.setText(num + "^2");
+                    textField.setText(removeBeforeDot(Math.pow(num,2)) + "");
+                    lastOperation.setText(removeBeforeDot(num) + "^2");
                 }
             }
         });
@@ -191,7 +191,7 @@ public class MainFrame extends JFrame {
             JButton button = (JButton) e.getSource();
             operation = button.getText().charAt(0);
 
-            lastOperation.setText(firstNumber + " " + operation);
+            lastOperation.setText(removeBeforeDot(firstNumber) + " " + operation);
 
             textField.setText("");
         }
@@ -203,23 +203,19 @@ public class MainFrame extends JFrame {
             if (firstNumber!=0){
                 if (!textField.getText().equals("")) {
                     secondNumber = Double.parseDouble(textField.getText());
-                    lastOperation.setText( firstNumber +" " +operation +" "+ secondNumber);
+                    lastOperation.setText( removeBeforeDot(firstNumber) +" " +operation +" "+ removeBeforeDot(secondNumber));
                     double result = firstNumber;
                     switch (operation) {
-                        case '+':
-                            result +=  secondNumber ;
+                        case '+': result +=  secondNumber ;
                             break;
-                        case '-':
-                            result -= secondNumber ;
+                        case '-': result -= secondNumber ;
                             break;
-                        case '*':
-                            result *=  secondNumber ;
+                        case '*': result *=  secondNumber ;
                             break;
-                        case '/':
-                            result /= secondNumber;
+                        case '/': result /= secondNumber;
                             break;
                     }
-                    lastOperation.setText(lastOperation.getText() +" = " + result);
+                    lastOperation.setText(lastOperation.getText() +" = " + removeBeforeDot(result));
                     firstNumber = result;
                     textField.setText("");
                 }
@@ -227,7 +223,16 @@ public class MainFrame extends JFrame {
         }
     };
 
-        public static void main(String[] args) {
+    public String removeBeforeDot(double num){
+        if ((int)num==num){
+            return "" + (int)num;
+        }
+        else {
+            return ""+num;
+        }
+    }
+
+    public static void main(String[] args) {
         new MainFrame();
     }
 }
