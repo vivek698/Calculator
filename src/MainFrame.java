@@ -168,6 +168,13 @@ public class MainFrame extends JFrame {
             }
         });
 
+        buttons[10].addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //TODO
+            }
+        });
+
 
         buttons[15].addActionListener(new ActionListener() {
             @Override
@@ -179,6 +186,15 @@ public class MainFrame extends JFrame {
                 lastOperation.setText("²√ "+removeBeforeDot(num)+" = "+ removeBeforeDot(firstNumber));
             }
         });
+
+        buttons[20].addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        //TODO
+                    }
+                }
+        );
 
 
         buttons[25].addActionListener(new ActionListener() {
