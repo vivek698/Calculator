@@ -122,30 +122,25 @@ public class MainFrame extends JFrame {
         buttons[4].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                textField.setText(textField.getText().substring(0,textField.getText().length()-1));
+                if (textField.getText().length()>=1){
+                    textField.setText(textField.getText().substring(0,textField.getText().length()-1));
+                }
             }
         });
 
         buttons[5].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (!textField.getText().equals("")) {
-                    double num = Double.parseDouble(textField.getText());
-                    textField.setText(removeBeforeDot(Math.pow(num,2)) + "");
-                    lastOperation.setText(removeBeforeDot(num) + "^2");
-                }
+                double num=getNum();
+                textField.setText(removeBeforeDot(Math.pow(num,2)) + "");
+                lastOperation.setText(removeBeforeDot(num) + "^2");
             }
         });
         buttons[6].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                double num;
-                if (!textField.getText().equals("")) {
-                    num = Double.parseDouble(textField.getText());
-                    textField.setText("");
-                }else{
-                    num = firstNumber;
-                }
+                double num=getNum();
+
                 firstNumber = Math.log10(num);
 
                 lastOperation.setText("log"+removeBeforeDot(num)+" = "+ removeBeforeDot(firstNumber));
@@ -154,16 +149,22 @@ public class MainFrame extends JFrame {
         buttons[7].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                double num;
-                if (!textField.getText().equals("")) {
-                    num = Double.parseDouble(textField.getText());
-                    textField.setText("");
-                }else{
-                    num = firstNumber;
-                }
+                double num=getNum();
+
                 firstNumber = Math.log10(num)/Math.log10(Math.E);
 
                 lastOperation.setText("log"+removeBeforeDot(num)+" = "+ removeBeforeDot(firstNumber));
+            }
+        });
+
+        buttons[8].addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                double num=getNum();
+
+                firstNumber = Math.pow(10,num);
+
+                lastOperation.setText("10^"+removeBeforeDot(num)+" = "+ removeBeforeDot(firstNumber));
             }
         });
 
@@ -262,6 +263,16 @@ public class MainFrame extends JFrame {
         }
     }
 
+    private double getNum(){
+        double num;
+        if (!textField.getText().equals("")) {
+            num = Double.parseDouble(textField.getText());
+            textField.setText("");
+        }else{
+            num = firstNumber;
+        }
+        return num;
+    }
     public static void main(String[] args) {
         new MainFrame();
     }
