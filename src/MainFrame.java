@@ -168,6 +168,30 @@ public class MainFrame extends JFrame {
             }
         });
 
+
+        buttons[15].addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                double num=getNum();
+
+                firstNumber = Math.sqrt(num);
+
+                lastOperation.setText("²√ "+removeBeforeDot(num)+" = "+ removeBeforeDot(firstNumber));
+            }
+        });
+
+
+        buttons[25].addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                double num=getNum();
+
+                firstNumber = 1/num;
+
+                lastOperation.setText("1 / "+removeBeforeDot(num)+" = "+ removeBeforeDot(firstNumber));
+            }
+        });
+
         //init simple operation
         buttons[29].setBackground(new Color(0x00F2DE));
         for (int i = 9; i < 29; i+=5) {
