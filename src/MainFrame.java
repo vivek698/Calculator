@@ -136,6 +136,36 @@ public class MainFrame extends JFrame {
                 }
             }
         });
+        buttons[6].addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                double num;
+                if (!textField.getText().equals("")) {
+                    num = Double.parseDouble(textField.getText());
+                    textField.setText("");
+                }else{
+                    num = firstNumber;
+                }
+                firstNumber = Math.log10(num);
+
+                lastOperation.setText("log"+removeBeforeDot(num)+" = "+ removeBeforeDot(firstNumber));
+            }
+        });
+        buttons[7].addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                double num;
+                if (!textField.getText().equals("")) {
+                    num = Double.parseDouble(textField.getText());
+                    textField.setText("");
+                }else{
+                    num = firstNumber;
+                }
+                firstNumber = Math.log10(num)/Math.log10(Math.E);
+
+                lastOperation.setText("log"+removeBeforeDot(num)+" = "+ removeBeforeDot(firstNumber));
+            }
+        });
 
         //init simple operation
         buttons[29].setBackground(new Color(0x00F2DE));
